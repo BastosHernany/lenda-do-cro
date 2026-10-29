@@ -255,9 +255,24 @@ a{color:inherit}
 .anot{margin:0 14px 12px;display:grid;gap:5px}
 .dlg-corpo .anot{margin:18px 0 6px}
 .anot label{font-size:13px;font-weight:700;color:var(--tinta)}
-.anot textarea{font:inherit;font-size:14px;line-height:1.5;border:1px solid var(--linha-2);border-radius:var(--raio-m);padding:10px 12px;background:#FFFDF6;color:var(--tinta);resize:vertical;min-height:86px;width:100%}
-.anot textarea:focus{outline:2px solid var(--gengiva);outline-offset:1px;border-color:transparent}
 .anot small{font-size:11.5px;color:var(--tinta-2)}
+.anot-editor{border:1px solid var(--linha-2);border-radius:var(--raio-m);background:#FFFDF6;overflow:hidden}
+.anot-editor:focus-within{outline:2px solid var(--gengiva);outline-offset:1px;border-color:transparent}
+.anot-toolbar{display:flex;gap:2px;padding:4px 6px;border-bottom:1px solid var(--linha);background:var(--esmalte);flex-wrap:wrap}
+.anot-toolbar button{width:30px;height:28px;border:none;background:none;border-radius:6px;cursor:pointer;font:inherit;font-size:14px;color:var(--tinta-2);display:inline-flex;align-items:center;justify-content:center;transition:background .12s,color .12s}
+.anot-toolbar button:hover{background:var(--gengiva-claro);color:var(--tinta)}
+.anot-toolbar button.ativo{background:var(--gengiva-claro);color:var(--gengiva)}
+.anot-toolbar .sep{width:1px;height:20px;background:var(--linha);margin:4px 3px;flex:none}
+.anot-corpo{min-height:86px;max-height:300px;overflow-y:auto;padding:10px 12px;font:inherit;font-size:14px;line-height:1.6;color:var(--tinta);outline:none}
+.anot-corpo:empty::before{content:attr(data-placeholder);color:var(--tinta-2);opacity:.6;pointer-events:none}
+.anot-corpo b,.anot-corpo strong{font-weight:700}
+.anot-corpo i,.anot-corpo em{font-style:italic}
+.anot-corpo u{text-decoration:underline}
+.anot-corpo s{text-decoration:line-through}
+.anot-corpo ul,.anot-corpo ol{margin:4px 0;padding-left:22px}
+.anot-corpo li{margin:2px 0}
+.anot-corpo h3{font-size:16px;font-weight:700;margin:8px 0 4px}
+.anot-corpo blockquote{border-left:3px solid var(--gengiva);padding-left:10px;margin:6px 0;color:var(--tinta-2)}
 details.pontos{margin:0 14px 12px;border-top:1px solid var(--linha);padding-top:8px}
 details.pontos summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--tinta-2)}
 details.pontos ul{margin:6px 0 0;padding-left:18px;font-size:13.5px}
@@ -592,6 +607,79 @@ details.bloco summary{cursor:pointer;font:700 19px var(--serif)}
 .tema-btn:hover{transform:scale(1.1)}
 .tema-btn.ativo{border-color:var(--tinta);box-shadow:0 0 0 3px var(--gengiva-claro)}
 .tema-btn.ativo::after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;font-size:16px;font-weight:800;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.3)}
+/* ---------- Avatar picker ---------- */
+.avatar-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;justify-items:center}
+.avatar-opt{border:3px solid transparent;border-radius:50%;padding:4px;cursor:pointer;background:none;transition:border-color .15s,transform .15s}
+.avatar-opt:hover{transform:scale(1.08);border-color:var(--linha-2)}
+.avatar-opt.selecionado{border-color:var(--gengiva);box-shadow:0 0 0 3px var(--gengiva-claro)}
+.avatar-opt svg{display:block;border-radius:50%}
+.avatar-label{display:block;font-size:11px;color:var(--tinta-2);margin-top:2px;text-align:center}
+/* ---------- Mapas mentais ---------- */
+.mapas-filtros{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.mapas-filtros button{border:1.5px solid var(--linha);background:var(--papel);border-radius:10px;padding:6px 14px;font:600 13px inherit;color:var(--tinta-2);cursor:pointer;transition:all .15s}
+.mapas-filtros button:hover{border-color:var(--gengiva);color:var(--tinta)}
+.mapas-filtros button.ativo{background:var(--gengiva-claro);border-color:var(--gengiva);color:var(--gengiva)}
+.mapas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:24px}
+.mapa-card{background:var(--papel);border:1.5px solid var(--linha);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .18s,box-shadow .18s,border-color .18s}
+.mapa-card:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.08);border-color:var(--gengiva)}
+.mapa-card-top{height:6px}
+.mapa-card-body{padding:16px}
+.mapa-card-body h3{margin:0 0 6px;font-size:15px;font-weight:700;color:var(--tinta)}
+.mapa-card-body p{margin:0 0 10px;font-size:12.5px;color:var(--tinta-2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mapa-card-meta{display:flex;gap:12px;font-size:11.5px;color:var(--tinta-3)}
+.mapa-card-meta span{display:flex;align-items:center;gap:3px}
+.mapa-card-custom{border-style:dashed}
+.mapa-card-custom .mapa-card-body{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100px;text-align:center}
+.mapa-card-custom h3{color:var(--gengiva)}
+
+.mapa-viewer{position:fixed;inset:0;z-index:35;background:var(--papel);display:none;flex-direction:column;overflow:hidden}
+.mapa-viewer.aberto{display:flex}
+.mapa-viewer-topo{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1.5px solid var(--linha);flex:none;background:var(--papel)}
+.mapa-viewer-topo h2{margin:0;font-size:17px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mapa-viewer-topo .disc-tag{font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px;color:#fff;white-space:nowrap}
+.mapa-viewer-topo button{border:0;background:none;cursor:pointer;color:var(--tinta-2);padding:6px;border-radius:8px;display:flex;align-items:center}
+.mapa-viewer-topo button:hover{background:var(--esmalte);color:var(--tinta)}
+.mapa-viewer-conteudo{flex:1;overflow:auto;padding:20px 16px 40px;-webkit-overflow-scrolling:touch}
+
+.mm-tree{list-style:none;padding:0;margin:0}
+.mm-tree .mm-tree{padding-left:0;margin-left:18px;border-left:2.5px solid var(--mm-cor,var(--gengiva));overflow:hidden}
+.mm-tree .mm-tree.fechado{max-height:0}
+.mm-node{position:relative;padding:6px 0 6px 16px}
+.mm-node::before{content:"";position:absolute;left:0;top:50%;width:14px;height:0;border-top:2.5px solid var(--mm-cor,var(--gengiva))}
+.mm-tree>.mm-node:first-child{padding-top:8px}
+.mm-tree>.mm-node:last-child{padding-bottom:8px}
+.mm-raiz{padding:0;margin-bottom:14px}
+.mm-raiz::before{display:none}
+.mm-raiz .mm-bolha{font-size:18px;font-weight:800;padding:12px 20px;border-radius:14px;background:var(--mm-cor,var(--gengiva));color:#fff;text-align:center;letter-spacing:-.01em}
+.mm-bolha{display:inline-block;padding:7px 14px;border-radius:10px;font-size:13.5px;font-weight:500;color:var(--tinta);background:var(--esmalte);line-height:1.3;max-width:100%;word-wrap:break-word;transition:background .15s}
+.mm-d1>.mm-bolha{font-size:15px;font-weight:700;background:color-mix(in srgb,var(--mm-cor,var(--gengiva)) 15%,var(--papel));border:1.5px solid color-mix(in srgb,var(--mm-cor,var(--gengiva)) 30%,transparent)}
+.mm-d2>.mm-bolha{font-size:13.5px;font-weight:500}
+.mm-toggle{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border:1.5px solid var(--mm-cor,var(--gengiva));border-radius:50%;background:var(--papel);color:var(--mm-cor,var(--gengiva));font-size:14px;font-weight:700;cursor:pointer;margin-left:8px;vertical-align:middle;transition:transform .2s,background .15s;line-height:1}
+.mm-toggle:hover{background:var(--gengiva-claro)}
+.mm-toggle.fechado{transform:rotate(-90deg)}
+
+.mm-acoes{display:flex;gap:6px;margin-left:8px;opacity:0;transition:opacity .15s}
+.mm-node:hover>.mm-acoes,.mm-raiz:hover>.mm-acoes{opacity:1}
+.mm-acoes button{border:0;background:var(--esmalte);color:var(--tinta-2);width:26px;height:26px;border-radius:6px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;padding:0}
+.mm-acoes button:hover{background:var(--gengiva-claro);color:var(--gengiva)}
+@media(max-width:700px){.mm-acoes{opacity:1}}
+.mm-vazio{text-align:center;padding:40px 20px;color:var(--tinta-3)}
+.mm-vazio h3{margin:0 0 8px;font-size:18px;color:var(--tinta-2)}
+.mm-vazio p{margin:0 0 16px;font-size:13.5px}
+
+dialog.dlg-mm{border:0;border-radius:16px;padding:0;max-width:min(440px,90vw);width:100%;background:var(--papel);box-shadow:0 24px 60px rgba(0,0,0,.2)}
+dialog.dlg-mm::backdrop{background:rgba(0,0,0,.35)}
+.dlg-mm-inner{padding:24px}
+.dlg-mm-inner h3{margin:0 0 16px;font-size:18px}
+.dlg-mm-inner input,.dlg-mm-inner textarea{width:100%;border:1.5px solid var(--linha);background:var(--papel);border-radius:10px;padding:10px 12px;font:14px inherit;color:var(--tinta);outline:none;resize:vertical}
+.dlg-mm-inner input:focus,.dlg-mm-inner textarea:focus{border-color:var(--gengiva);box-shadow:0 0 0 3px var(--gengiva-claro)}
+.dlg-mm-inner textarea{min-height:80px}
+.dlg-mm-inner label{display:block;font-size:12px;font-weight:600;color:var(--tinta-2);margin-bottom:6px;margin-top:14px}
+.dlg-mm-btns{display:flex;gap:8px;justify-content:flex-end;margin-top:20px}
+.dlg-mm-btns button{border:0;border-radius:10px;padding:9px 18px;font:600 14px inherit;cursor:pointer}
+.dlg-mm-btns .cancelar{background:var(--esmalte);color:var(--tinta-2)}
+.dlg-mm-btns .confirmar{background:var(--gengiva);color:#fff}
+.dlg-mm-btns .apagar{background:#e74c3c;color:#fff}
 /* ---------- Comemoração de conquista ---------- */
 .festa{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:16px;background:rgba(59,35,64,.38);opacity:0;pointer-events:none;transition:opacity .25s}
 .festa.on{opacity:1;pointer-events:auto}
@@ -617,6 +705,9 @@ details.bloco summary{cursor:pointer;font:700 19px var(--serif)}
 .sync-st[data-st="erro"]::before,.sync-st[data-st="semConfig"]::before{background:var(--alerta)}
 .app.recolhido .sync-st{display:none}
 .no-pc{font-style:italic}
+.btn-sair-menu{color:var(--alerta)!important;margin-top:4px}
+.btn-sair-menu svg{stroke:var(--alerta)!important}
+.app.recolhido .btn-sair-menu span{display:none}
 /* ===== Tela de login ===== */
 .tela-login{min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:24px 16px;background:linear-gradient(160deg,var(--esmalte),var(--grad-a) 40%,var(--grad-b) 70%,var(--grad-c))}
 .login-card{width:min(440px,100%);background:var(--papel);border-radius:26px;box-shadow:0 8px 40px -12px rgba(59,35,64,.2);overflow:hidden}
@@ -635,6 +726,7 @@ details.bloco summary{cursor:pointer;font:700 19px var(--serif)}
 .login-campos input:focus{outline:2.5px solid var(--gengiva);outline-offset:1px}
 #loginMsg{min-height:1.4em;font-size:13.5px;color:#9A3412;margin:10px 0 0;text-align:center}
 .login-acoes{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;justify-content:center}
+.login-acoes .btn.principal{padding:13px 20px;font-size:15px;justify-content:center}
 .btn-google{display:flex;align-items:center;gap:10px;justify-content:center;width:100%;padding:11px 16px;border:1px solid var(--linha-2);border-radius:12px;background:var(--papel);font:600 14.5px var(--sans);color:var(--tinta);cursor:pointer;transition:border-color .15s,background .15s}
 .btn-google:hover{border-color:var(--gengiva);background:var(--gengiva-claro)}
 .btn-google svg{width:20px;height:20px;flex:none}
@@ -744,6 +836,17 @@ details.bloco summary{cursor:pointer;font:700 19px var(--serif)}
     <p id="loginMsg" role="alert"></p>
   </div>
 </div>
+<script>
+(function(){
+  var tabs=document.querySelectorAll(".login-tab");
+  var panes=document.querySelectorAll(".login-pane");
+  tabs.forEach(function(tab){tab.addEventListener("click",function(){
+    tabs.forEach(function(t){t.classList.toggle("ativo",t===tab)});
+    panes.forEach(function(p){p.hidden=p.id!==tab.dataset.pane});
+    var m=document.getElementById("loginMsg");if(m)m.textContent="";
+  })});
+})();
+</script>
 
 <div id="telaApp" hidden>
 <div class="app">
@@ -758,6 +861,7 @@ details.bloco summary{cursor:pointer;font:700 19px var(--serif)}
     <button class="item-menu" data-aba="cal"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Calendário</span></button>
     <button class="item-menu" data-aba="notas"><svg viewBox="0 0 24 24"><path d="M7 3.5h7l4 4V20.5H7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 12h5M10 16h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Provas e notas</span></button>
     <button class="item-menu" data-aba="banco"><svg viewBox="0 0 24 24"><path d="M5 4.5h11a3 3 0 013 3v12H8a3 3 0 01-3-3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 9.5a2 2 0 113 1.7c-.6.4-1 .8-1 1.5M12 15.5v.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Banco de questões</span></button>
+    <button class="item-menu" data-aba="mapas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 9V4M12 20v-5M15 12h5M4 12h5M14.1 9.9l3.5-3.5M6.4 17.6l3.5-3.5M14.1 14.1l3.5 3.5M6.4 6.4l3.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Mapas mentais</span></button>
     <button class="item-menu" data-aba="prog"><svg viewBox="0 0 24 24"><path d="M5 20V11M12 20V5M19 20v-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><span>Progresso</span></button>
     <button class="item-menu" data-aba="perfil"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 20c1.2-3.6 4-5.5 7.5-5.5s6.3 1.9 7.5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Perfil</span></button>
     <button class="item-menu so-celular" id="btnConfigM"><svg><use href="#i-ajuste"/></svg><span>Ajustes</span></button>
@@ -766,6 +870,7 @@ details.bloco summary{cursor:pointer;font:700 19px var(--serif)}
     <div class="menu-prova" id="menuProva"></div>
     <div class="sync-st" data-sync></div>
     <button class="item-menu" id="btnConfig"><svg><use href="#i-ajuste"/></svg><span>Ajustes</span></button>
+    <button class="item-menu btn-sair-menu" id="btnSairMenu"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Sair da conta</span></button>
   </div>
 </aside>
 <div class="principal">
@@ -781,6 +886,7 @@ details.bloco summary{cursor:pointer;font:700 19px var(--serif)}
 <section class="vista vista-pad" id="vPainel" hidden><div class="dash" id="dash"></div></section>
 <section class="vista vista-pad" id="vProg" hidden><div class="dash" id="dashProg"></div></section>
 <section class="vista vista-pad" id="vBanco" hidden><div class="dash" id="banco"></div></section>
+<section class="vista vista-pad" id="vMapas" hidden><div class="dash" id="mapasContainer"></div></section>
 <section class="vista vista-pad" id="vPerfil" hidden><div class="dash" id="perfil"></div></section>
 
 
@@ -886,6 +992,22 @@ details.bloco summary{cursor:pointer;font:700 19px var(--serif)}
     </div>
   </div>
   <div class="dlg-rodape"><button class="btn principal" id="btnSalvarCfg">Salvar ajustes</button></div>
+</dialog>
+
+<dialog id="dlgAvatar" style="width:min(520px,calc(100% - 24px));border-radius:22px;border:none;padding:0;background:var(--papel);box-shadow:0 16px 56px rgba(0,0,0,.18)">
+  <div style="text-align:center;padding:28px 24px 14px">
+    <h2 style="margin:0 0 6px;font-size:22px">Escolha seu avatar</h2>
+    <p style="margin:0;color:var(--tinta-2);font-size:14px">Quem vai te representar nessa jornada?</p>
+  </div>
+  <div style="padding:0 24px 8px">
+    <p style="margin:0 0 8px;font-weight:600;font-size:13px;color:var(--tinta-2)">👩‍⚕️ Dentistas</p>
+    <div class="avatar-grid" id="avatarGridF"></div>
+    <p style="margin:14px 0 8px;font-weight:600;font-size:13px;color:var(--tinta-2)">👨‍⚕️ Dentistas</p>
+    <div class="avatar-grid" id="avatarGridM"></div>
+  </div>
+  <div style="padding:12px 24px 24px;text-align:center">
+    <button class="btn principal" id="btnAvatarOk" disabled style="min-width:180px">Escolher</button>
+  </div>
 </dialog>
 
 <div class="festa" id="festa" role="dialog" aria-modal="true" aria-label="Comemoração" aria-hidden="true"><canvas id="confete"></canvas><div class="festa-card"></div></div>
@@ -2156,7 +2278,7 @@ async function conectarSync(email,nome,uid,est,resp){
   document.getElementById("telaLogin").hidden=true;
   document.getElementById("telaApp").hidden=false;
   aplicarTema(estado.tema);
-  tudo();irPara(estado.aba||"painel");renderPerfil();
+  tudo();irPara(estado.aba||"painel");renderPerfil();if(estado.avatar==null)setTimeout(()=>_abrirAvatar(true),400);
 }
 function desconectarSync(){
   syncPronto=false;if(unsubEst){unsubEst();unsubEst=null}docEst=docResp=null;contaEmail="";contaNome="";contaUid="";
@@ -2167,7 +2289,8 @@ window.PlannerSync={
   status:statusSync,
   conectar:conectarSync,desconectar:desconectarSync,aoSair:null,
   nomeUsuario(){return contaNome||contaEmail.split("@")[0]||"Estudante"},
-  emailUsuario(){return contaEmail}
+  emailUsuario(){return contaEmail},
+  _updateNome(n){contaNome=n;renderPerfil();/* atualiza saudação */const sp=document.querySelector('.saudacao-nome');if(sp)sp.textContent=n}
 };
 
 /* histórico de alterações: fica salvo junto com o plano, então sobrevive a fechar e reabrir */
@@ -2493,7 +2616,7 @@ function renderDia(){
         </div></div>
       ${t.semMaterial?`<div style="padding:10px 14px 0"><div class="nota-sem">Esse assunto está no cronograma, mas o material dele não veio no ZIP. Use as anotações e slides da aula.</div></div>`:""}
       <ol class="passos">${passos}</ol>
-<div class="anot"><label for="an${s.id}">Minhas anotações</label><textarea id="an${s.id}" data-anot="${s.top}" rows="4" placeholder="Escreva o que quiser sobre este assunto: dúvidas, macetes, o que o professor falou na aula…">${esc(estado.notas[s.top]||"")}</textarea><small data-anot-st="${s.top}">${estado.notas[s.top]?"Salvo":"Salva sozinho enquanto você escreve"}</small></div>
+<div class="anot"><label>Minhas anotações</label>${editorHtml(s.top)}<small data-anot-st="${s.top}">${estado.notas[s.top]?"Salvo":"Salva sozinho enquanto você escreve"}</small></div>
       <details class="pontos"${s.tipo==="rev"?" open":""}><summary>Pontos-chave para dominar</summary><ul>${t.pontos.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></details>
       <div class="mover"><label for="mv${s.id}">Mudar de dia:</label><input type="date" id="mv${s.id}" value="${d}"><button class="btn" data-move="${s.id}" style="padding:5px 12px">Mover</button></div>
     </article>`;
@@ -2509,17 +2632,80 @@ function renderDia(){
   c.querySelectorAll("[data-move]").forEach(b=>b.onclick=()=>{const v=document.getElementById("mv"+b.dataset.move).value;if(!v||!/^\d{4}-\d{2}-\d{2}$/.test(v)){aviso("Escolha uma data válida.");return}if(v===d)return;guardar();moverSessao(b.dataset.move,v)});
 }
 
-/* ----- anotações por assunto ----- */
+/* ----- editor de anotações rico ----- */
+function editorHtml(id){
+  return `<div class="anot-editor" data-editor="${id}">
+<div class="anot-toolbar">
+<button type="button" data-cmd="bold" title="Negrito (Ctrl+B)"><b>B</b></button>
+<button type="button" data-cmd="italic" title="Itálico (Ctrl+I)"><i>I</i></button>
+<button type="button" data-cmd="underline" title="Sublinhado (Ctrl+U)"><u>U</u></button>
+<button type="button" data-cmd="strikeThrough" title="Riscado"><s>S</s></button>
+<span class="sep"></span>
+<button type="button" data-cmd="insertUnorderedList" title="Lista com marcadores">•</button>
+<button type="button" data-cmd="insertOrderedList" title="Lista numerada">1.</button>
+<span class="sep"></span>
+<button type="button" data-cmd="formatBlock" data-val="H3" title="Subtítulo">H</button>
+<button type="button" data-cmd="formatBlock" data-val="BLOCKQUOTE" title="Citação">❝</button>
+</div>
+<div class="anot-corpo" contenteditable="true" data-anot="${id}" data-placeholder="Escreva o que quiser sobre este assunto: dúvidas, macetes, o que o professor falou na aula…">${estado.notas[id]||""}</div>
+</div>`;
+}
 let tAnot=null;
 function ligarAnotacoes(raiz){
-  raiz.querySelectorAll("[data-anot]").forEach(ta=>{
-    ta.addEventListener("input",()=>{
-      const t=ta.dataset.anot;const v=ta.value;
-      if(v.trim())estado.notas[t]=v;else delete estado.notas[t];
+  /* toolbar buttons */
+  raiz.querySelectorAll(".anot-toolbar button[data-cmd]").forEach(btn=>{
+    btn.addEventListener("mousedown",e=>e.preventDefault());
+    btn.addEventListener("click",()=>{
+      const ed=btn.closest(".anot-editor");
+      const corpo=ed.querySelector(".anot-corpo");
+      corpo.focus();
+      const cmd=btn.dataset.cmd;
+      const val=btn.dataset.val||null;
+      if(cmd==="formatBlock"){
+        /* toggle: se já está nesse formato, volta para parágrafo */
+        const cur=document.queryCommandValue("formatBlock");
+        document.execCommand("formatBlock",false,cur.toLowerCase()===val.toLowerCase()?"P":val);
+      }else{document.execCommand(cmd,false,val)}
+      atualizarToolbar(ed);
+    });
+  });
+  /* contenteditable input */
+  raiz.querySelectorAll("[data-anot][contenteditable]").forEach(corpo=>{
+    corpo.addEventListener("input",()=>{
+      const t=corpo.dataset.anot;const v=corpo.innerHTML;
+      const limpo=corpo.textContent.trim();
+      if(limpo)estado.notas[t]=v;else delete estado.notas[t];
       document.querySelectorAll(`[data-anot-st="${t}"]`).forEach(x=>x.textContent="Salvando…");
-      document.querySelectorAll(`textarea[data-anot="${t}"]`).forEach(o=>{if(o!==ta)o.value=v});
+      /* sync outros editores do mesmo assunto */
+      document.querySelectorAll(`[data-anot="${t}"][contenteditable]`).forEach(o=>{if(o!==corpo)o.innerHTML=v});
       clearTimeout(tAnot);tAnot=setTimeout(()=>{salvar();document.querySelectorAll(`[data-anot-st="${t}"]`).forEach(x=>x.textContent="Salvo");renderLista()},700);
     });
+    corpo.addEventListener("keyup",()=>{atualizarToolbar(corpo.closest(".anot-editor"))});
+    corpo.addEventListener("mouseup",()=>{atualizarToolbar(corpo.closest(".anot-editor"))});
+    /* suporte a atalhos: markdown-like */
+    corpo.addEventListener("keydown",e=>{
+      if(e.key===" "&&corpo.lastChild){
+        const sel=window.getSelection();if(!sel.rangeCount)return;
+        const r=sel.getRangeAt(0);const node=r.startContainer;
+        if(node.nodeType===3){
+          const txt=node.textContent.slice(0,r.startOffset);
+          if(txt==="*"||txt==="-"){e.preventDefault();node.textContent=node.textContent.slice(r.startOffset);document.execCommand("insertUnorderedList")}
+          else if(/^\d+\.$/.test(txt)){e.preventDefault();node.textContent=node.textContent.slice(r.startOffset);document.execCommand("insertOrderedList")}
+          else if(txt==="#"){e.preventDefault();node.textContent=node.textContent.slice(r.startOffset);document.execCommand("formatBlock",false,"H3")}
+          else if(txt===">"){e.preventDefault();node.textContent=node.textContent.slice(r.startOffset);document.execCommand("formatBlock",false,"BLOCKQUOTE")}
+        }
+      }
+    });
+  });
+}
+function atualizarToolbar(ed){
+  if(!ed)return;
+  ed.querySelectorAll(".anot-toolbar button[data-cmd]").forEach(btn=>{
+    const cmd=btn.dataset.cmd;
+    if(cmd==="formatBlock"){
+      const cur=document.queryCommandValue("formatBlock");
+      btn.classList.toggle("ativo",cur.toLowerCase()===(btn.dataset.val||"").toLowerCase());
+    }else{btn.classList.toggle("ativo",document.queryCommandState(cmd))}
   });
 }
 /* ----- detalhe do card ----- */
@@ -2537,7 +2723,7 @@ function abrirCard(id){
     <ul>${a.pontos.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
     <h3>Perguntas para pensar</h3>
     <ul>${a.perguntas.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
-    <div class="anot"><label for="anCard">Minhas anotações</label><textarea id="anCard" data-anot="${a.id}" rows="5" placeholder="Escreva o que quiser sobre este assunto: dúvidas, macetes, o que o professor falou na aula…">${esc(estado.notas[a.id]||"")}</textarea><small data-anot-st="${a.id}">${estado.notas[a.id]?"Salvo":"Salva sozinho enquanto você escreve"}</small></div>
+    <div class="anot"><label>Minhas anotações</label>${editorHtml(a.id)}<small data-anot-st="${a.id}">${estado.notas[a.id]?"Salvo":"Salva sozinho enquanto você escreve"}</small></div>
   </div>
   <div class="dlg-rodape">
     <label>${s?"Agendado para":"Estudar em"} <input type="date" id="cardData" value="${s?s.data:hojeIso()}"></label>
@@ -2789,6 +2975,7 @@ const PAGINAS={painel:["Visão geral","O que estudar hoje, a próxima prova e co
   notas:["Provas e notas","Defina a ordem das provas e lance as notas, mesmo as preliminares."],
   prog:["Progresso","Ritmo de estudo, atrasos e avanço de cada matéria."],
   banco:["Banco de questões","Revisão diária e treino com as questões dos assuntos que você já estudou."],
+  mapas:["Mapas mentais","Resumos visuais de cada matéria para revisar os pontos-chave."],
   perfil:["Perfil","Seu nível, suas conquistas e os dados do sistema."]};
 function irPara(aba){
   if(!PAGINAS[aba])aba="painel";
@@ -2799,6 +2986,7 @@ function irPara(aba){
   document.getElementById("vNotas").hidden=aba!=="notas";
   document.getElementById("vProg").hidden=aba!=="prog";
   document.getElementById("vBanco").hidden=aba!=="banco";
+  document.getElementById("vMapas").hidden=aba!=="mapas";
   document.getElementById("vPerfil").hidden=aba!=="perfil";
   document.getElementById("provas").hidden=true;
   document.getElementById("pgTitulo").textContent=PAGINAS[aba][0];
@@ -3018,10 +3206,59 @@ function renderBanco(){
 }
 
 /* ================= perfil: XP, níveis e conquistas ================= */
-const NIVEIS=[
-  [0,"Caloura de jaleco"],[150,"Aprendiz de sonda"],[400,"Guardiã do fio dental"],[800,"Caçadora de biofilme"],
-  [1300,"Domadora de limas"],[2000,"Mestre da resina"],[2900,"Rainha da raspagem"],[4000,"Bisturi de ouro"],
+const _NF=[[0,"Caloura de jaleco"],[150,"Aprendiz de sonda"],[400,"Guardiã do fio dental"],[800,"Caçadora de biofilme"],
+  [1300,"Domadora de limas"],[2000,"Mestra da resina"],[2900,"Rainha da raspagem"],[4000,"Bisturi de ouro"],
   [5400,"Doutora sorriso"],[7000,"Especialista em aprovação"],[9000,"Lenda do CRO"]];
+const _NM=[[0,"Calouro de jaleco"],[150,"Aprendiz de sonda"],[400,"Guardião do fio dental"],[800,"Caçador de biofilme"],
+  [1300,"Domador de limas"],[2000,"Mestre da resina"],[2900,"Rei da raspagem"],[4000,"Bisturi de ouro"],
+  [5400,"Doutor sorriso"],[7000,"Especialista em aprovação"],[9000,"Lenda do CRO"]];
+function genero(){return estado.genero||"f"}
+function gn(f,m){return genero()==="m"?m:f}
+const _gMap=[["Amiga","Amigo"],["Aprovada","Aprovado"],["aprovada","aprovado"],["Seja aprovada","Seja aprovado"],["da caloura","do calouro"]];
+function gTxt(t){if(genero()!=="m")return t;for(const[f,m]of _gMap)t=t.replaceAll(f,m);return t}
+/* ---- Avatares ---- */
+const AVATARES=[
+  {id:0,g:"f",pele:"#FDDCB5",cabelo:"#F2D16B",label:"Loira"},
+  {id:1,g:"f",pele:"#F5CDA0",cabelo:"#6B3A2A",label:"Morena"},
+  {id:2,g:"f",pele:"#C68642",cabelo:"#2C1810",label:"Parda"},
+  {id:3,g:"f",pele:"#8D5524",cabelo:"#1A1110",label:"Negra"},
+  {id:4,g:"m",pele:"#FDDCB5",cabelo:"#F2D16B",label:"Loiro"},
+  {id:5,g:"m",pele:"#F5CDA0",cabelo:"#6B3A2A",label:"Moreno"},
+  {id:6,g:"m",pele:"#C68642",cabelo:"#2C1810",label:"Pardo"},
+  {id:7,g:"m",pele:"#8D5524",cabelo:"#1A1110",label:"Negro"},
+  {id:8,g:"f",pele:"#F5CDA0",cabelo:"#C24B2A",label:"Ruiva"},
+  {id:9,g:"m",pele:"#F5CDA0",cabelo:"#C24B2A",label:"Ruivo"},
+];
+function avatarSvg(av,sz){
+  sz=sz||80;const a=AVATARES[av]||AVATARES[0];
+  const fem=a.g==="f";
+  const coat=`var(--gengiva,#D9577F)`;
+  if(fem) return `<svg viewBox="0 0 80 80" width="${sz}" height="${sz}" style="display:block">
+    <circle cx="40" cy="40" r="38" fill="${coat}" opacity=".13"/>
+    <ellipse cx="40" cy="58" rx="20" ry="14" fill="white"/>
+    <path d="M25 56 Q25 50 32 48 L48 48 Q55 50 55 56 L55 68 Q40 74 25 68Z" fill="white" stroke="${coat}" stroke-width="1.2"/>
+    <circle cx="40" cy="34" r="16" fill="${a.pele}"/>
+    <path d="M24 30 Q24 16 40 14 Q56 16 56 30 Q56 24 48 22 Q40 20 32 22 Q24 24 24 30Z" fill="${a.cabelo}"/>
+    <path d="M24 30 Q22 34 23 38" stroke="${a.cabelo}" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M56 30 Q58 34 57 38" stroke="${a.cabelo}" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <circle cx="34" cy="34" r="2" fill="#3B2340"/>
+    <circle cx="46" cy="34" r="2" fill="#3B2340"/>
+    <path d="M36 40 Q40 44 44 40" fill="none" stroke="#3B2340" stroke-width="1.5" stroke-linecap="round"/>
+    <rect x="34" y="44" width="12" height="4" rx="2" fill="#B0D8E8" opacity=".7"/>
+  </svg>`;
+  return `<svg viewBox="0 0 80 80" width="${sz}" height="${sz}" style="display:block">
+    <circle cx="40" cy="40" r="38" fill="${coat}" opacity=".13"/>
+    <ellipse cx="40" cy="58" rx="20" ry="14" fill="white"/>
+    <path d="M25 56 Q25 50 32 48 L48 48 Q55 50 55 56 L55 68 Q40 74 25 68Z" fill="white" stroke="${coat}" stroke-width="1.2"/>
+    <circle cx="40" cy="34" r="16" fill="${a.pele}"/>
+    <path d="M24 28 Q26 16 40 14 Q54 16 56 28 Q54 22 40 20 Q26 22 24 28Z" fill="${a.cabelo}"/>
+    <circle cx="34" cy="34" r="2" fill="#3B2340"/>
+    <circle cx="46" cy="34" r="2" fill="#3B2340"/>
+    <path d="M36 40 Q40 44 44 40" fill="none" stroke="#3B2340" stroke-width="1.5" stroke-linecap="round"/>
+    <rect x="34" y="44" width="12" height="4" rx="2" fill="#B0D8E8" opacity=".7"/>
+  </svg>`;
+}
+const NIVEIS=new Proxy(_NF,{get(_,p){const a=genero()==="m"?_NM:_NF;const v=a[p];return typeof v==="function"?v.bind(a):v}});
 function estatisticas(){
   let etapas=0,revisoes=0,assuntos=0;
   for(const s of estado.sess){etapas+=Object.values(s.ok||{}).filter(Boolean).length;if(s.tipo==="rev"&&concluida(s))revisoes++}
@@ -3073,7 +3310,7 @@ function checarConquistas(){
   const novos=TROFEUS.filter(([id,,,,f])=>{const[a,b]=f(S);return a>=b&&!(estado.trofeus&&estado.trofeus[id])});
   if(estado.trofeus===null){estado.trofeus={};novos.forEach(([id])=>estado.trofeus[id]=hojeIso());estado.nivelVisto=nv;salvar();primeiraChecagem=false;return}
   if(novos.length){novos.forEach(([id])=>estado.trofeus[id]=hojeIso());salvar();
-    if(!primeiraChecagem)novos.forEach(([id,ic,nome,desc])=>celebrar({tipo:"trofeu",ic,nome,desc}))}
+    if(!primeiraChecagem)novos.forEach(([id,ic,nome,desc])=>celebrar({tipo:"trofeu",ic,nome:gTxt(nome),desc:gTxt(desc)}))}
   if(nv>(estado.nivelVisto??0)){estado.nivelVisto=nv;salvar();if(!primeiraChecagem)celebrar({tipo:"nivel",ic:String(nv+1),nome:NIVEIS[nv][1],desc:`Você chegou ao nível ${nv+1} com ${xp.toLocaleString("pt-BR")} XP.`,extra:NIVEIS[nv+1]?`Próximo: ${NIVEIS[nv+1][1]}`:"Nível máximo!"})}
   primeiraChecagem=false;
 }
@@ -3083,7 +3320,7 @@ function renderPerfil(){
   const ganhos=TROFEUS.filter(([id])=>estado.trofeus&&estado.trofeus[id]).length;
   const g=statsQ();
   let h=`<div class="bloco s12"><div class="perfil-hero">
-      <div class="avatar" style="--p:${Math.round(pct)}"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#dente" fill="#fff" stroke="${corAcento()}" stroke-width="1.3"/></svg><span class="nv">Nível ${nv+1}</span></div>
+      <div class="avatar" style="--p:${Math.round(pct)};cursor:pointer" onclick="_abrirAvatar()" title="Trocar avatar">${estado.avatar!=null?avatarSvg(estado.avatar,56):`<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#dente" fill="#fff" stroke="${corAcento()}" stroke-width="1.3"/></svg>`}<span class="nv">Nível ${nv+1}</span></div>
       <div style="flex:1;min-width:240px"><h2>${window.PlannerSync.nomeUsuario()}</h2><div class="titulo-nv">${NIVEIS[nv][1]}</div>
         <div class="xp-barra"><i style="width:${pct}%"></i></div>
         <div class="xp-txt">${xp.toLocaleString("pt-BR")} XP${prox?`. Faltam ${(prox[0]-xp).toLocaleString("pt-BR")} XP para o nível ${nv+2}: ${prox[1]}.`:". Nível máximo alcançado!"}</div></div>
@@ -3095,8 +3332,8 @@ function renderPerfil(){
       <div class="tile"><span class="val">${S.melhorSeq}<small>${S.melhorSeq===1?"dia":"dias"}</small></span><span class="rot">maior sequência de estudo (atual: ${S.seqAtual})</span></div>
     </div>
     <div class="bloco s12"><h2>Conquistas</h2><p class="sub">Desbloqueie estudando, respondendo questões e lançando as notas.</p>
-      <div class="trofeus">${TROFEUS.map(([id,ic,nome,desc,f])=>{const[a,b]=f(S);const ok=estado.trofeus&&estado.trofeus[id];return `<div class="trofeu${ok?"":" bloqueado"}"><span class="ic" aria-hidden="true">${ic}</span><div style="min-width:0;flex:1"><b>${nome}</b><small>${desc}</small>${ok?`<span class="quando-t">Conquistado em ${curta(estado.trofeus[id])}</span>`:b>1?`<div class="prog" title="${Math.min(a,b)} de ${b}"><i style="width:${Math.min(100,a/b*100)}%"></i></div><small>${Math.min(a,b)} de ${b}</small>`:""}</div></div>`}).join("")}</div></div>
-    <div class="bloco s7"><h2>Níveis</h2><p class="sub">Cada nível é um passo da caloura até a lenda do CRO.</p>
+      <div class="trofeus">${TROFEUS.map(([id,ic,nome,desc,f])=>{const[a,b]=f(S);const ok=estado.trofeus&&estado.trofeus[id];return `<div class="trofeu${ok?"":" bloqueado"}"><span class="ic" aria-hidden="true">${ic}</span><div style="min-width:0;flex:1"><b>${gTxt(nome)}</b><small>${gTxt(desc)}</small>${ok?`<span class="quando-t">${gTxt("Conquistado")} em ${curta(estado.trofeus[id])}</span>`:b>1?`<div class="prog" title="${Math.min(a,b)} de ${b}"><i style="width:${Math.min(100,a/b*100)}%"></i></div><small>${Math.min(a,b)} de ${b}</small>`:""}</div></div>`}).join("")}</div></div>
+    <div class="bloco s7"><h2>Níveis</h2><p class="sub">Cada nível é um passo ${gn("da caloura","do calouro")} até a lenda do CRO.</p>
       <ol class="niveis">${NIVEIS.map(([x,t],i)=>`<li class="${i<nv?"feito":i===nv?"atual":""}"><span class="n">${i+1}</span>${t}<span class="xp">${x.toLocaleString("pt-BR")} XP</span></li>`).join("")}</ol></div>
     <div class="bloco s5"><h2>Como ganhar XP</h2><ul class="lista-simples">
       <li>Etapa de estudo concluída<span class="dir tag">+10</span></li><li>Assunto concluído<span class="dir tag">+50</span></li>
@@ -3107,6 +3344,7 @@ function renderPerfil(){
       <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="pBaixar">Baixar cópia</button><button class="btn" id="pRestCopia">Restaurar uma cópia</button><button class="btn vermelho" id="pReset">Restaurar todo o sistema</button><button class="btn" id="pSair">Sair da conta</button></div></div>`;
   el.innerHTML=h;
   document.getElementById("pSair").onclick=()=>confirmar("Sair da conta?","O progresso continua salvo na nuvem. Para ver de novo, é só entrar com o mesmo e-mail.","Sair",()=>{window.PlannerSync.aoSair&&window.PlannerSync.aoSair()});
+  document.getElementById("btnSairMenu").onclick=()=>confirmar("Sair da conta?","O progresso continua salvo na nuvem. Para ver de novo, é só entrar com o mesmo e-mail.","Sair",()=>{window.PlannerSync.aoSair&&window.PlannerSync.aoSair()});
   document.getElementById("pBaixar").onclick=()=>document.getElementById("btnExportar").click();
   document.getElementById("pRestCopia").onclick=()=>document.getElementById("arqImport").click();
   document.getElementById("pReset").onclick=()=>confirmar("Restaurar todo o sistema?","Isso apaga calendário, notas, respostas, níveis e conquistas e volta o Planner ao início. Se quiser guardar, baixe uma cópia antes.","Apagar tudo e recomeçar",async()=>{syncPronto=false;try{if(docEst)await docEst.delete();if(docResp)await docResp.delete()}catch(e){}try{localStorage.removeItem(CHAVE);localStorage.removeItem(CHAVE_HIST)}catch(e){}location.reload()});
@@ -3152,7 +3390,7 @@ document.getElementById("btnSalvarCfg").onclick=()=>{
 };
 function normalizar(){estado.cfg={...PADRAO.cfg,...(estado.cfg||{})};estado.sess=estado.sess||[];estado.provas=estado.provas||provasIniciais();estado.cursos=estado.cursos||cursosIniciais();
   if(estado.provas.some(p=>p.ordem==null)){[...estado.provas].sort((a,b)=>(a.d||"9")<(b.d||"9")?-1:1).forEach((p,i)=>p.ordem=i)}
-  estado.lib=estado.lib||{};estado.qs=estado.qs||{};estado.resp=estado.resp||[];estado.treinos=estado.treinos||[];if(estado.trofeus===undefined)estado.trofeus=null;estado.revFeitas=estado.revFeitas||[];estado.cfg.qDia=estado.cfg.qDia||10;estado.notas=estado.notas||{};estado.aba=estado.aba||"painel";estado.tema=estado.tema||"rosa"}
+  estado.lib=estado.lib||{};estado.qs=estado.qs||{};estado.resp=estado.resp||[];estado.treinos=estado.treinos||[];if(estado.trofeus===undefined)estado.trofeus=null;estado.revFeitas=estado.revFeitas||[];estado.cfg.qDia=estado.cfg.qDia||10;estado.notas=estado.notas||{};estado.mapas=estado.mapas||{};estado.aba=estado.aba||"painel";estado.tema=estado.tema||"rosa";if(estado.avatar==null)estado.avatar=null;if(!estado.genero)estado.genero="f"}
 document.getElementById("btnExportar").onclick=()=>{
   const blob=new Blob([JSON.stringify(estado,null,1)],{type:"application/json"});
   const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`lenda-do-cro-${hojeIso()}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000);
@@ -3165,7 +3403,350 @@ document.getElementById("arqImport").onchange=async e=>{
   e.target.value="";
 };
 document.getElementById("btnLimpar").onclick=()=>{if(!estado.sess.length){aviso("O calendário já está vazio.");return}dlgCfg.close();confirmar("Limpar o calendário?","Todos os estudos agendados e as etapas marcadas serão apagados. Notas, questões e conquistas continuam.","Limpar calendário",()=>{estado.sess=[];salvar();tudo();aviso("Calendário limpo.")})};
-document.querySelectorAll("dialog").forEach(dl=>dl.addEventListener("click",e=>{if(e.target===dl)dl.close()}));
+document.querySelectorAll("dialog").forEach(dl=>dl.addEventListener("click",e=>{if(e.target===dl&&dl.id!=="dlgAvatar"&&dl.id!=="dlgMM")dl.close()}));
+
+/* ================= Mapas mentais ================= */
+(function(){
+const MAPAS_PRE=[
+{id:"_perio",disc:"perio",titulo:"Periodontia",raiz:{t:"Periodontia",f:[
+  {t:"Anatomia do Periodonto",f:[{t:"Gengiva livre e inserida"},{t:"Ligamento periodontal"},{t:"Cemento radicular"},{t:"Osso alveolar"},{t:"Junção mucogengival"}]},
+  {t:"Etiopatogenia",f:[{t:"Biofilme dental (placa)"},{t:"Cálculo supra e subgengival"},{t:"Resposta imune-inflamatória"},{t:"Fatores de risco (tabagismo, diabetes)"},{t:"Perda de inserção"}]},
+  {t:"Exame Clínico",f:[{t:"Sondagem periodontal"},{t:"Sangramento à sondagem (SS)"},{t:"Nível clínico de inserção (NCI)"},{t:"Periograma"},{t:"Índice de placa e gengival"}]},
+  {t:"Classificação 2018",f:[{t:"Saúde periodontal"},{t:"Gengivite (induzida por biofilme)"},{t:"Periodontite (estágio I-IV, grau A-C)"},{t:"Condições e deformidades mucogengivais"},{t:"Doenças peri-implantares"}]},
+  {t:"Instrumentação (RACR)",f:[{t:"Curetas Gracey (área-específicas)"},{t:"Curetas universais (McCall)"},{t:"Foices e enxadas"},{t:"Ultrassom (pontas)"},{t:"Alisamento radicular"}]},
+  {t:"Tratamento",f:[{t:"Controle do biofilme"},{t:"Raspagem supra e subgengival"},{t:"Reavaliação (4-6 semanas)"},{t:"Manutenção periodontal"},{t:"Cirurgia (quando indicada)"}]}
+]}},
+{id:"_endo",disc:"endo",titulo:"Endodontia",raiz:{t:"Endodontia",f:[
+  {t:"Anatomia Interna",f:[{t:"Câmara pulpar"},{t:"Canais radiculares (principal, lateral, acessório)"},{t:"Forame apical"},{t:"Delta apical"},{t:"Grupos dentários e variações"}]},
+  {t:"Diagnóstico",f:[{t:"Testes de sensibilidade (frio, calor, elétrico)"},{t:"Teste de percussão"},{t:"Teste de palpação"},{t:"Classificação pulpar (normal, reversível, irreversível, necrose)"},{t:"Classificação periapical (normal, abscesso, granuloma)"}]},
+  {t:"Acesso e Isolamento",f:[{t:"Isolamento absoluto (lençol de borracha)"},{t:"Grampos (W8A, 26, 212)"},{t:"Cirurgia de acesso (forma de conveniência)"},{t:"Localização de canais"},{t:"Remoção do teto da câmara"}]},
+  {t:"Preparo Químico-Cirúrgico",f:[{t:"Odontometria (localizador apical + Rx)"},{t:"Comprimento de trabalho"},{t:"Técnicas de instrumentação (crown-down, step-back)"},{t:"Limas manuais (K, Hedström)"},{t:"Limas rotatórias (NiTi)"}]},
+  {t:"Substâncias e Irrigação",f:[{t:"Hipoclorito de sódio (NaOCl 1-2,5%)"},{t:"EDTA 17%"},{t:"Clorexidina 2%"},{t:"Soro fisiológico"},{t:"Protocolo de irrigação final"}]},
+  {t:"Medicação e Obturação",f:[{t:"Hidróxido de cálcio (CaOH)"},{t:"Pasta de Calen"},{t:"Técnica de condensação lateral"},{t:"Cone principal + acessórios"},{t:"Cimento obturador (AH Plus, Sealer 26)"}]}
+]}},
+{id:"_dent",disc:"dent",titulo:"Dentística",raiz:{t:"Dentística",f:[
+  {t:"Preparo Cavitário",f:[{t:"Nomenclatura das faces"},{t:"Classificação de Black (I-V)"},{t:"Dentina: zonas e esclerose"},{t:"Limite amelo-dentinário (LAD)"},{t:"Princípios do preparo conservador"}]},
+  {t:"Resina Composta",f:[{t:"Composição (BisGMA, UDMA, carga)"},{t:"Tipos (micro, nano, híbrida)"},{t:"Fotoativação (luz halógena, LED)"},{t:"Contração de polimerização"},{t:"Técnica incremental"}]},
+  {t:"CIV (Ionômero de Vidro)",f:[{t:"Convencional vs. modificado por resina"},{t:"Liberação de flúor"},{t:"Adesão química ao dente"},{t:"Indicações (ART, selante, base)"},{t:"Proteção superficial"}]},
+  {t:"Proteção Pulpar",f:[{t:"Capeamento direto (MTA, CaOH)"},{t:"Capeamento indireto"},{t:"Base cavitária (CIV)"},{t:"Forramento"},{t:"Material de proteção"}]},
+  {t:"Adesão",f:[{t:"Condicionamento ácido (37% H₃PO₄)"},{t:"Primer (monômeros hidrofílicos)"},{t:"Adesivo (bond, resina fluida)"},{t:"Sistemas convencionais (3 passos, 2 passos)"},{t:"Sistemas autocondicionantes (2 passos, universal)"}]},
+  {t:"Sequência Restauradora",f:[{t:"Isolamento absoluto"},{t:"Preparo e limpeza"},{t:"Sistema adesivo"},{t:"Inserção de resina (incrementos oblíquos)"},{t:"Acabamento e polimento"}]}
+]}},
+{id:"_cir",disc:"cir",titulo:"Cirurgia",raiz:{t:"Cirurgia",f:[
+  {t:"Anestesia",f:[{t:"Lidocaína 2% + epinefrina 1:100.000"},{t:"Mepivacaína 3% (sem vaso)"},{t:"Articaína 4%"},{t:"Técnicas (bloqueio, infiltrativa, intrabucal)"},{t:"Dose máxima e cálculo de tubetes"}]},
+  {t:"Prescrição",f:[{t:"Amoxicilina 500mg 8/8h"},{t:"Ibuprofeno 600mg 8/8h"},{t:"Dipirona 500mg 6/6h"},{t:"Dexametasona 4mg"},{t:"Clorexidina 0,12% (bochecho)"}]},
+  {t:"Princípios Cirúrgicos",f:[{t:"Diérese (incisão)"},{t:"Hemostasia"},{t:"Exérese (remoção)"},{t:"Síntese (sutura)"},{t:"Cadeia asséptica"}]},
+  {t:"Exodontia",f:[{t:"Sindesmotomia"},{t:"Luxação (alavancas)"},{t:"Avulsão (fórceps)"},{t:"Curetagem do alvéolo"},{t:"Sutura e orientações"}]},
+  {t:"Retalhos e Suturas",f:[{t:"Retalho envelope (sem relaxante)"},{t:"Retalho trapezoidal (c/ relaxante)"},{t:"Sutura simples"},{t:"Sutura contínua"},{t:"Fios reabsorvíveis e não-reabsorvíveis"}]},
+  {t:"Complicações",f:[{t:"Alveolite seca"},{t:"Hemorragia pós-operatória"},{t:"Fratura radicular"},{t:"Comunicação buco-sinusal"},{t:"Parestesia"}]}
+]}},
+{id:"_ped",disc:"ped",titulo:"Odontopediatria",raiz:{t:"Odontopediatria",f:[
+  {t:"Manejo Comportamental",f:[{t:"Dizer-mostrar-fazer"},{t:"Reforço positivo"},{t:"Controle de voz"},{t:"Modelagem"},{t:"Distração"}]},
+  {t:"Dentição Decídua e Mista",f:[{t:"Cronologia de erupção (6m-30m)"},{t:"Esfoliação (6a-12a)"},{t:"Espaços primatas"},{t:"Plano terminal (reto, mesial, distal)"},{t:"Análise de espaço (Moyers, Nance)"}]},
+  {t:"Cariologia e Prevenção",f:[{t:"Cárie de mamadeira (ECC)"},{t:"Dieta e biofilme"},{t:"Verniz de flúor (NaF 5%)"},{t:"Gel de flúor (APF 1,23%)"},{t:"Protocolo de aplicação por idade"}]},
+  {t:"Restaurações",f:[{t:"ART (tratamento restaurador atraumático)"},{t:"Técnica de Hall (coroa de aço)"},{t:"Selantes de fóssulas e fissuras"},{t:"CIV em decíduos"},{t:"Resina em decíduos"}]},
+  {t:"Terapia Pulpar",f:[{t:"Capeamento indireto"},{t:"Pulpotomia (MTA, formocresol)"},{t:"Pulpectomia em decíduo"},{t:"Pasta obturadora (CTZ, Calen)"},{t:"Indicações e contraindicações"}]},
+  {t:"Cirurgia e Anestesia Pediátrica",f:[{t:"Anestesia tópica obrigatória"},{t:"Técnicas infiltrativas"},{t:"Exodontia de decíduos"},{t:"Frenectomia"},{t:"Dose máxima por peso (mg/kg)"}]}
+]}},
+{id:"_int",disc:"int",titulo:"Clínica Integrada",raiz:{t:"Clínica Integrada",f:[
+  {t:"Avaliação do Paciente",f:[{t:"Anamnese completa"},{t:"Exames complementares"},{t:"Classificação ASA (I-IV)"},{t:"Condições sistêmicas relevantes"},{t:"Plano de tratamento integrado"}]},
+  {t:"Paciente Diabético",f:[{t:"Diabetes tipo 1 e tipo 2"},{t:"Glicemia de jejum e HbA1c"},{t:"Risco de hipoglicemia no consultório"},{t:"Cicatrização comprometida"},{t:"Cuidados no atendimento"}]},
+  {t:"Paciente Idoso",f:[{t:"Polifarmácia"},{t:"Xerostomia"},{t:"Doença periodontal e perda dentária"},{t:"Cárie radicular"},{t:"Adaptação de prótese"}]},
+  {t:"Biossegurança",f:[{t:"EPIs obrigatórios"},{t:"Esterilização (autoclave)"},{t:"Desinfecção de superfícies"},{t:"Gerenciamento de resíduos"},{t:"Protocolo pós-exposição"}]},
+  {t:"Integração Clínica",f:[{t:"Sequência: urgência → perio → endo → restaurador → prótese"},{t:"Proservação e manutenção"},{t:"Documentação odontológica"},{t:"Prontuário e ficha clínica"},{t:"Encaminhamento para especialistas"}]}
+]}}
+];
+const discMap=Object.fromEntries(DISCIPLINAS.map(d=>[d.id,d]));
+
+function mapasPre(){return MAPAS_PRE}
+function mapasCustom(){return Object.values(estado.mapas||{}).sort((a,b)=>(b.atualizado||0)-(a.atualizado||0))}
+function getMapaById(id){
+  if(id.startsWith("_"))return MAPAS_PRE.find(m=>m.id===id);
+  return estado.mapas[id]||null;
+}
+function clonarMapa(pre){
+  return JSON.parse(JSON.stringify({...pre,id:"m"+Date.now().toString(36)+Math.random().toString(36).slice(2,6)}));
+}
+
+let mapaAberto=null;
+let filtroDisc="todas";
+
+function renderMapas(){
+  const ct=document.getElementById("mapasContainer");
+  ct.innerHTML="";
+  /* filtros */
+  const filtDiv=document.createElement("div");filtDiv.className="mapas-filtros";
+  const dAll=document.createElement("button");dAll.textContent="Todas";dAll.className=filtroDisc==="todas"?"ativo":"";
+  dAll.onclick=()=>{filtroDisc="todas";renderMapas()};filtDiv.appendChild(dAll);
+  DISCIPLINAS.forEach(d=>{
+    const b=document.createElement("button");b.textContent=d.nome;b.className=filtroDisc===d.id?"ativo":"";
+    b.style.cssText=filtroDisc===d.id?`background:${d.claro};border-color:${d.cor};color:${d.cor}`:"";
+    b.onclick=()=>{filtroDisc=d.id;renderMapas()};filtDiv.appendChild(b);
+  });
+  ct.appendChild(filtDiv);
+
+  /* pre-filled */
+  const pre=mapasPre().filter(m=>filtroDisc==="todas"||m.disc===filtroDisc);
+  if(pre.length){
+    const h=document.createElement("h2");h.textContent="Mapas de estudo";h.style.cssText="margin:0 0 12px;font-size:16px";ct.appendChild(h);
+    const grid=document.createElement("div");grid.className="mapas-grid";
+    pre.forEach(m=>{
+      const d=discMap[m.disc];
+      const card=document.createElement("div");card.className="mapa-card";
+      const nBranches=m.raiz.f?m.raiz.f.length:0;
+      const nTotal=countNodes(m.raiz);
+      card.innerHTML=`<div class="mapa-card-top" style="background:${d.cor}"></div><div class="mapa-card-body"><h3>${m.titulo}</h3><p>${m.raiz.f?m.raiz.f.map(n=>n.t).join(" · "):""}</p><div class="mapa-card-meta"><span style="color:${d.cor}">● ${d.nome}</span><span>${nBranches} ramos</span><span>${nTotal} nós</span></div></div>`;
+      card.onclick=()=>abrirMapa(m.id);
+      grid.appendChild(card);
+    });
+    ct.appendChild(grid);
+  }
+
+  /* custom */
+  const custom=mapasCustom().filter(m=>filtroDisc==="todas"||m.disc===filtroDisc);
+  const hc=document.createElement("h2");hc.textContent="Seus mapas";hc.style.cssText="margin:18px 0 12px;font-size:16px";ct.appendChild(hc);
+  const grid2=document.createElement("div");grid2.className="mapas-grid";
+  /* card novo */
+  const novoCard=document.createElement("div");novoCard.className="mapa-card mapa-card-custom";
+  novoCard.innerHTML=`<div class="mapa-card-body"><h3>＋ Criar mapa</h3><p style="color:var(--tinta-3)">Monte seu próprio mapa mental</p></div>`;
+  novoCard.onclick=()=>criarMapa();
+  grid2.appendChild(novoCard);
+  custom.forEach(m=>{
+    const d=discMap[m.disc]||{cor:"var(--gengiva)",nome:"Personalizado",claro:"var(--gengiva-claro)"};
+    const card=document.createElement("div");card.className="mapa-card";
+    const nBranches=m.raiz.f?m.raiz.f.length:0;
+    const nTotal=countNodes(m.raiz);
+    card.innerHTML=`<div class="mapa-card-top" style="background:${d.cor}"></div><div class="mapa-card-body"><h3>${esc(m.titulo)}</h3><p>${m.raiz.f?m.raiz.f.map(n=>esc(n.t)).join(" · "):""}</p><div class="mapa-card-meta"><span style="color:${d.cor}">● ${d.nome}</span><span>${nBranches} ramos</span><span>${nTotal} nós</span></div></div>`;
+    card.onclick=()=>abrirMapa(m.id);
+    grid2.appendChild(card);
+  });
+  ct.appendChild(grid2);
+
+  if(mapaAberto)renderViewer();
+}
+
+function countNodes(n){let c=1;if(n.f)for(const ch of n.f)c+=countNodes(ch);return c}
+
+/* ---- Viewer ---- */
+function getViewer(){
+  let v=document.getElementById("mapaViewer");
+  if(!v){
+    v=document.createElement("div");v.id="mapaViewer";v.className="mapa-viewer";
+    v.innerHTML=`<div class="mapa-viewer-topo"><button id="mmVoltar" title="Voltar"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M15 19l-7-7 7-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><h2 id="mmTitulo"></h2><span class="disc-tag" id="mmDisc"></span><button id="mmEditar" title="Editar mapa" style="margin-left:auto"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M17 3l4 4-10 10H7v-4L17 3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button><button id="mmApagar" title="Apagar mapa"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M5 7h14M9 7V5h6v2M10 11v6M14 11v6M6 7l1 12a2 2 0 002 2h6a2 2 0 002-2l1-12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div><div class="mapa-viewer-conteudo" id="mmConteudo"></div>`;
+    document.querySelector(".app").appendChild(v);
+    v.querySelector("#mmVoltar").onclick=fecharMapa;
+  }
+  return v;
+}
+
+function abrirMapa(id){
+  let m=getMapaById(id);
+  if(!m)return;
+  /* se é pré-built e o user já tem uma cópia editada, usa a cópia */
+  if(id.startsWith("_")&&estado.mapas["u"+id]){m=estado.mapas["u"+id]}
+  mapaAberto=m;
+  renderViewer();
+}
+
+function fecharMapa(){
+  mapaAberto=null;
+  const v=document.getElementById("mapaViewer");
+  if(v)v.classList.remove("aberto");
+}
+
+function renderViewer(){
+  if(!mapaAberto)return;
+  const m=mapaAberto;
+  const v=getViewer();
+  const d=discMap[m.disc]||{cor:"var(--gengiva)",nome:"Personalizado",claro:"var(--gengiva-claro)"};
+  v.querySelector("#mmTitulo").textContent=m.titulo;
+  const tag=v.querySelector("#mmDisc");tag.textContent=d.nome;tag.style.background=d.cor;
+  const editavel=!m.id.startsWith("_")||!!estado.mapas["u"+m.id];
+  const isPre=m.id.startsWith("_")&&!estado.mapas["u"+m.id];
+
+  v.querySelector("#mmEditar").style.display="";
+  v.querySelector("#mmApagar").style.display=isPre?"none":"";
+
+  v.querySelector("#mmEditar").onclick=()=>{
+    if(isPre){
+      /* duplicar para edição */
+      const copia=clonarMapa(m);copia.id="u"+m.id;copia.atualizado=Date.now();
+      estado.mapas[copia.id]=copia;salvar();
+      mapaAberto=copia;renderViewer();renderMapas();aviso("Mapa duplicado para edição.");
+    } else {
+      editarNodo(m.raiz,null,m);
+    }
+  };
+  v.querySelector("#mmApagar").onclick=()=>{
+    confirmar("Apagar mapa?","O mapa \""+m.titulo+"\" será removido.","Apagar",()=>{
+      delete estado.mapas[m.id];salvar();fecharMapa();renderMapas();
+    });
+  };
+
+  const ct=v.querySelector("#mmConteudo");ct.innerHTML="";
+  const tree=renderTree(m.raiz,0,d.cor,m);
+  ct.appendChild(tree);
+  v.classList.add("aberto");
+}
+
+function renderTree(node,depth,cor,mapa){
+  if(depth===0){
+    /* raiz */
+    const wrap=document.createElement("div");
+    const raiz=document.createElement("div");raiz.className="mm-raiz";
+    raiz.style.setProperty("--mm-cor",cor);
+    const bolha=document.createElement("div");bolha.className="mm-bolha";bolha.textContent=node.t;
+    raiz.appendChild(bolha);
+    if(!mapa.id.startsWith("_")||estado.mapas["u"+mapa.id]){
+      raiz.appendChild(makeAcoes(node,null,mapa,cor));
+    }
+    wrap.appendChild(raiz);
+    if(node.f&&node.f.length){
+      const ul=document.createElement("div");ul.className="mm-tree";ul.style.setProperty("--mm-cor",cor);
+      node.f.forEach(ch=>{ul.appendChild(renderTree(ch,1,cor,mapa))});
+      wrap.appendChild(ul);
+    }
+    return wrap;
+  }
+  const li=document.createElement("div");li.className="mm-node mm-d"+Math.min(depth,2);
+  li.style.setProperty("--mm-cor",cor);
+  const bolha=document.createElement("span");bolha.className="mm-bolha";bolha.textContent=node.t;
+  li.appendChild(bolha);
+  const hasKids=node.f&&node.f.length;
+  if(hasKids){
+    const tog=document.createElement("button");tog.className="mm-toggle";tog.textContent=node._fechado?"＋":"−";
+    if(node._fechado)tog.classList.add("fechado");
+    tog.onclick=e=>{e.stopPropagation();node._fechado=!node._fechado;renderViewer()};
+    li.appendChild(tog);
+  }
+  if(!mapa.id.startsWith("_")||estado.mapas["u"+mapa.id]){
+    li.appendChild(makeAcoes(node,null,mapa,cor));
+  }
+  if(hasKids&&!node._fechado){
+    const ul=document.createElement("div");ul.className="mm-tree";ul.style.setProperty("--mm-cor",cor);
+    node.f.forEach(ch=>{ul.appendChild(renderTree(ch,depth+1,cor,mapa))});
+    li.appendChild(ul);
+  }
+  return li;
+}
+
+function makeAcoes(node,parent,mapa,cor){
+  const wrap=document.createElement("span");wrap.className="mm-acoes";wrap.style.display="inline-flex";
+  /* add child */
+  const bAdd=document.createElement("button");bAdd.title="Adicionar sub-tópico";bAdd.textContent="＋";
+  bAdd.onclick=e=>{e.stopPropagation();adicionarFilho(node,mapa)};
+  wrap.appendChild(bAdd);
+  /* edit */
+  const bEdit=document.createElement("button");bEdit.title="Editar";bEdit.textContent="✎";
+  bEdit.onclick=e=>{e.stopPropagation();editarNodo(node,parent,mapa)};
+  wrap.appendChild(bEdit);
+  return wrap;
+}
+
+/* ---- Dialog ---- */
+function getDlgMM(){
+  let d=document.getElementById("dlgMM");
+  if(!d){
+    d=document.createElement("dialog");d.id="dlgMM";d.className="dlg-mm";
+    d.innerHTML=`<div class="dlg-mm-inner"><h3 id="dlgMMTitulo"></h3><label id="dlgMMLblTxt">Texto</label><textarea id="dlgMMTxt" rows="2"></textarea><div id="dlgMMExtra"></div><div class="dlg-mm-btns"><button class="apagar" id="dlgMMDel" style="margin-right:auto">Apagar</button><button class="cancelar" id="dlgMMCanc">Cancelar</button><button class="confirmar" id="dlgMMOk">Salvar</button></div></div>`;
+    document.body.appendChild(d);
+    d.querySelector("#dlgMMCanc").onclick=()=>d.close();
+    d.addEventListener("click",e=>{if(e.target===d)d.close()});
+  }
+  return d;
+}
+
+function editarNodo(node,parent,mapa){
+  const d=getDlgMM();
+  d.querySelector("#dlgMMTitulo").textContent="Editar";
+  const txt=d.querySelector("#dlgMMTxt");txt.value=node.t;
+  d.querySelector("#dlgMMExtra").innerHTML="";
+  const delBtn=d.querySelector("#dlgMMDel");
+  /* não pode apagar raiz */
+  delBtn.style.display=(node===mapa.raiz)?"none":"";
+  delBtn.onclick=()=>{
+    /* encontrar parent e remover */
+    function removeFrom(n){if(!n.f)return false;const i=n.f.indexOf(node);if(i>=0){n.f.splice(i,1);return true}for(const c of n.f)if(removeFrom(c))return true;return false}
+    removeFrom(mapa.raiz);
+    mapa.atualizado=Date.now();salvar();d.close();renderViewer();renderMapas();
+  };
+  d.querySelector("#dlgMMOk").onclick=()=>{
+    const v=txt.value.trim();if(!v)return;
+    node.t=v;mapa.atualizado=Date.now();salvar();d.close();renderViewer();renderMapas();
+  };
+  d.showModal();
+  txt.focus();txt.select();
+}
+
+function adicionarFilho(node,mapa){
+  const d=getDlgMM();
+  d.querySelector("#dlgMMTitulo").textContent="Novo sub-tópico";
+  const txt=d.querySelector("#dlgMMTxt");txt.value="";
+  d.querySelector("#dlgMMExtra").innerHTML=`<p style="margin:8px 0 0;font-size:12px;color:var(--tinta-3)">Dica: separe vários tópicos com Enter para criar vários de uma vez.</p>`;
+  d.querySelector("#dlgMMDel").style.display="none";
+  d.querySelector("#dlgMMOk").onclick=()=>{
+    const linhas=txt.value.split("\n").map(l=>l.trim()).filter(Boolean);
+    if(!linhas.length)return;
+    if(!node.f)node.f=[];
+    linhas.forEach(l=>node.f.push({t:l}));
+    mapa.atualizado=Date.now();salvar();d.close();renderViewer();renderMapas();
+  };
+  d.showModal();
+  txt.focus();
+}
+
+function criarMapa(){
+  const d=getDlgMM();
+  d.querySelector("#dlgMMTitulo").textContent="Novo mapa mental";
+  const txt=d.querySelector("#dlgMMTxt");txt.value="";
+  d.querySelector("#dlgMMLblTxt").textContent="Título do mapa";
+  const extra=d.querySelector("#dlgMMExtra");
+  extra.innerHTML=`<label style="display:block;font-size:12px;font-weight:600;color:var(--tinta-2);margin:14px 0 6px">Disciplina</label><select id="dlgMMDisc" style="width:100%;border:1.5px solid var(--linha);border-radius:10px;padding:9px 12px;font:14px inherit;background:var(--papel);color:var(--tinta)">${DISCIPLINAS.map(d=>`<option value="${d.id}">${d.nome}</option>`).join("")}<option value="">Outra</option></select>`;
+  d.querySelector("#dlgMMDel").style.display="none";
+  d.querySelector("#dlgMMOk").onclick=()=>{
+    const v=txt.value.trim();if(!v)return;
+    const disc=extra.querySelector("#dlgMMDisc").value||"int";
+    const id="m"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+    const m={id,disc,titulo:v,raiz:{t:v,f:[]},atualizado:Date.now()};
+    estado.mapas[id]=m;salvar();d.close();renderMapas();abrirMapa(id);
+  };
+  d.showModal();
+  txt.focus();
+  d.querySelector("#dlgMMLblTxt").textContent="Texto";
+}
+
+/* render on tab switch */
+const _origIrPara=irPara;
+irPara=function(aba){_origIrPara(aba);if(aba==="mapas"){fecharMapa();renderMapas()}};
+})();
+
+/* ================= Avatar picker ================= */
+(function(){
+  const dlg=document.getElementById("dlgAvatar");
+  const gridF=document.getElementById("avatarGridF");
+  const gridM=document.getElementById("avatarGridM");
+  const btnOk=document.getElementById("btnAvatarOk");
+  let pick=null;
+  function renderGrid(){
+    gridF.innerHTML="";gridM.innerHTML="";
+    AVATARES.forEach(av=>{
+      const btn=document.createElement("button");btn.className="avatar-opt";btn.type="button";
+      btn.innerHTML=avatarSvg(av.id,60)+`<span class="avatar-label">${av.label}</span>`;
+      btn.onclick=()=>{pick=av.id;dlg.querySelectorAll(".avatar-opt").forEach(b=>b.classList.remove("selecionado"));btn.classList.add("selecionado");btnOk.disabled=false};
+      (av.g==="f"?gridF:gridM).appendChild(btn);
+    });
+  }
+  btnOk.onclick=()=>{
+    if(pick==null)return;
+    estado.avatar=pick;estado.genero=AVATARES[pick].g;salvar();tudo();dlg.close();
+  };
+  window._abrirAvatar=function(forcarNovo){
+    pick=estado.avatar;renderGrid();
+    if(pick!=null){const btns=dlg.querySelectorAll(".avatar-opt");if(btns[pick])btns[pick].classList.add("selecionado");btnOk.disabled=false}
+    else btnOk.disabled=true;
+    dlg.showModal();
+  };
+})();
 
 renderFiltros();atualizaBotoesDesfazer();
 /* O app começa hidden; o login mostra quando autentica */
